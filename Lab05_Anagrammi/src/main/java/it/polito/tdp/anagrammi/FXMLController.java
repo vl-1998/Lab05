@@ -1,6 +1,7 @@
 package it.polito.tdp.anagrammi;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -38,20 +39,40 @@ public class FXMLController {
 
     @FXML
     void doCalcola(ActionEvent event) {
+    	txtCorretti.clear();
+    	txtErrati.clear();
+    	
     	String parola = txtParola.getText();
     	
-    	List <String> risultati = this.model.anagrammi(parola);
+    	if (parola.isEmpty()) {
+    		txtCorretti.appendText("Inserire parola!");
+    		return;
+    	}
+    	    
+    	List <String> corrette= new ArrayList <> ();
+    	List <String> errate= new ArrayList <> ();
+    	try {
+    		corrette= this.model.risultatoCorrette(this.model.anagrammi(parola));
+        	errate= this.model.risultatoErrate(this.model.anagrammi(parola));
+    	} catch (IllegalStateException se) {
+    		txtCorretti.appendText(se.getMessage());
+    	}
     	
     	
-    	for (String s:risultati) {
-    		txtCorretti.appendText(s);
+    	for (String s :corrette) {
+    		txtCorretti.appendText(s+"\n");
+    	}
+    	for (String s :errate) {
+    		txtErrati.appendText(s+"\n");
     	}
 
     }
 
     @FXML
     void doReset(ActionEvent event) {
-
+    	txtParola.clear();
+    	txtCorretti.clear();
+    	txtErrati.clear();
     }
 
     @FXML

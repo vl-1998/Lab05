@@ -7,7 +7,7 @@ import it.polito.tdp.angrammi.DAO.AnagrammaDAO;
 
 public class Model {
 	private List <String> soluzioni;
-	private AnagrammaDAO dao;
+	private AnagrammaDAO dao= new AnagrammaDAO();
 
 	
 	public List <String> anagrammi (String parola){
@@ -16,6 +16,10 @@ public class Model {
 		
 		//Creiamo la lista di parole che andro a scandire
 		parola=parola.toUpperCase();
+		if (this.check(parola)==false) {
+			throw new IllegalStateException("I numeri non sono validi. Inserire parola valida!\n");
+		}
+		
 		List <Character> disponibili= new ArrayList<>();
 		for (int i=0; i<parola.length();i++) {
 			disponibili.add(parola.charAt(i));
@@ -66,6 +70,16 @@ public class Model {
 		}
 	
 		return errate;	
+	}
+	
+	public boolean check (String p) {
+		boolean check = true;
+		for (int i=0; i<p.length();i++) {
+			if (!Character.isLetter(p.charAt(i))){
+				check=false;
+			}
+		}
+		return check;
 	}
 	
 }

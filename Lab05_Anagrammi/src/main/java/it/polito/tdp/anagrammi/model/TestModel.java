@@ -14,6 +14,9 @@ public class TestModel {
 		
 		List <String> corrette= ric.risultatoCorrette(ana_ciao);
 		System.out.println(corrette);
+		
+		List <String> errate= ric.risultatoErrate(ana_ciao);
+		System.out.println(errate);
 	}
 
 }
