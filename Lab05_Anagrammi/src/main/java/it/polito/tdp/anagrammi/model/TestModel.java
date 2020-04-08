@@ -8,7 +8,7 @@ public class TestModel {
 
 	public static void main(String[] args) {
 		Model ric = new Model() ;
-		
+	/*	
 		List<String> ana_ciao = ric.anagrammi("ciao") ;
 		System.out.println(ana_ciao);
 		
@@ -17,6 +17,7 @@ public class TestModel {
 		
 		List <String> errate= ric.risultatoErrate(ana_ciao);
 		System.out.println(errate);
+	}*/
 	}
 
 }

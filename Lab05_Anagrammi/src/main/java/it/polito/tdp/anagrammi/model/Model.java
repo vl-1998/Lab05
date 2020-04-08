@@ -1,17 +1,19 @@
 package it.polito.tdp.anagrammi.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import it.polito.tdp.angrammi.DAO.AnagrammaDAO;
 
 public class Model {
-	private List <String> soluzioni;
+	private Set <String> soluzioni;
 	private AnagrammaDAO dao= new AnagrammaDAO();
 
 	
-	public List <String> anagrammi (String parola){
-		this.soluzioni=new ArrayList <>();
+	public Set <String> anagrammi (String parola){
+		this.soluzioni=new HashSet<>();
 		//caso iniziale (imposto il livello e la stringa che passo)
 		
 		//Creiamo la lista di parole che andro a scandire
@@ -45,7 +47,7 @@ public class Model {
 		}
 	}
 	
-	public List <String> risultatoCorrette (List <String> soluzioni){
+	public List <String> risultatoCorrette (Set <String> soluzioni){
 		soluzioni=this.soluzioni;
 		List <String> corrette= new ArrayList <>();
 				
@@ -58,7 +60,7 @@ public class Model {
 		return corrette;	
 	}
 	
-	public List <String> risultatoErrate (List <String> soluzioni){
+	public List <String> risultatoErrate (Set <String> soluzioni){
 		soluzioni=this.soluzioni;
 		List <String> errate= new ArrayList <>();
 
